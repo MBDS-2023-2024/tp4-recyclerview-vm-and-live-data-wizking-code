@@ -5,6 +5,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.mbds.unice.github.R
 import org.mbds.unice.github.data.model.User
 
@@ -16,6 +17,10 @@ class ListUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(user: User, callback: UserListAdapter.Listener) {
         // TODO : Utiliser une librairie pour charger l'image (glide, coil, )
+        Glide.with(this)
+            .load("https://example.com/image.jpg")
+            .into(avatar)
+
         username.text = user.login
         deleteButton.setOnClickListener { callback.onClickDelete(user) }
     }
