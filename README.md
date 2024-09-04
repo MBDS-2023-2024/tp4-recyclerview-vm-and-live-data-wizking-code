@@ -59,3 +59,5 @@ tels que :
 1. Ajouter un champ de recherche dans la toolbar qui permet de filtrer les utilisateurs par leur nom
 
 # Contributeurs
+
+Jeffking Sterile
