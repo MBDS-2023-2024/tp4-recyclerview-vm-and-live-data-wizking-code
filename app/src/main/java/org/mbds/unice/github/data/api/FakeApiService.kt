@@ -14,6 +14,8 @@ class FakeApiService : ApiService {
         return _users.toList()
     }
 
+
+
     /**
      * Generate a random [User] and add it [FakeApiService.users] list.
      * This user must be get from the [FakeApiServiceGenerator.FAKE_USERS_RANDOM] list.
@@ -27,5 +29,9 @@ class FakeApiService : ApiService {
      */
     override fun deleteUser(username: User) {
         _users.remove(username)
+    }
+
+    override fun activer(user: User, yes: Boolean){
+
     }
 }

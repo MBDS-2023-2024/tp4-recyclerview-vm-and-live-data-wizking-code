@@ -32,7 +32,7 @@ tels que :
 3. Commit et push les derniers changements.
 
 ## Améliorer l'application
-
+v
 1. Repérez les derniers TODO dans le code et essayez de les implémenter
     2. On va modifier le comportement du bouton supprimer de l'application pour qu'en cliquant sur
        le

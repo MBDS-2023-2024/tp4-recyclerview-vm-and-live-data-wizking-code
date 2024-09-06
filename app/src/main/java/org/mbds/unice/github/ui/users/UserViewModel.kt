@@ -38,4 +38,8 @@ class UserViewModel : ViewModel() {
         userRepository.deleteUser(user)
         refresh()
     }
+
+    fun activeUser(user: User, actif : Boolean) {
+        userRepository.actifUser(user, actif)
+    }
 }

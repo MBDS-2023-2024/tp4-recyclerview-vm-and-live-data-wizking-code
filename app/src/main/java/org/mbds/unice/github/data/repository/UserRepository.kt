@@ -17,4 +17,8 @@ class UserRepository(
     fun deleteUser(user: User) {
         apiService.deleteUser(user)
     }
+
+    fun actifUser(user: User, actif : Boolean) {
+        apiService.activer(user,actif)
+    }
 }

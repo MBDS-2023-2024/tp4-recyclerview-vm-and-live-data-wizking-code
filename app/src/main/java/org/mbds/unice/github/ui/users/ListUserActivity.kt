@@ -60,7 +60,12 @@ class ListUserActivity : AppCompatActivity(), UserListAdapter.Listener {
             .setMessage("Are you sure you want to delete this user?")
             .setPositiveButton("Yes") { dialog, _ ->
                 // User confirmed deletion
-                viewModel.deleteUser(user) // Call method to delete the user
+              /*  if (user.isactif){
+                    viewModel.activeUser(user,false)
+                }else{
+                    viewModel.activeUser(user,true)
+                }// Call method to delete the user*/
+                viewModel.deleteUser(user)
                 dialog.dismiss() // Dismiss the dialog
             }
             .setNegativeButton("No") { dialog, _ ->
