@@ -42,7 +42,7 @@ v
     - On met un background 'rouge' sur la cellule quand l'utilisateur est désactivé et blanc quand
       il
       est activé
-    - On change le visuel du bouton delete : `poubelle` si l'utilisateur est activé et `restore` si
+    - On change le visuel du bouton delete : `poubelle` si l'utilisateur est activé et `restore` si22
       l'utilisateur est désactivé
     - Finalement, quand on clique sur le bouton delete ou restore, on switch le statut de
       l'utilisateur

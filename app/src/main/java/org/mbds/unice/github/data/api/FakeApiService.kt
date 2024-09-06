@@ -32,6 +32,7 @@ class FakeApiService : ApiService {
     }
 
     override fun activer(user: User, yes: Boolean){
-
+        _users.remove(user)
+        _users.add( User(user.id, user.login, user.avatarUrl,yes))
     }
 }
