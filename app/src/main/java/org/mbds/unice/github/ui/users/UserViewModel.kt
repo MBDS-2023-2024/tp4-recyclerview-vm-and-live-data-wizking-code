@@ -3,6 +3,8 @@ package org.mbds.unice.github.ui.users
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.mbds.unice.github.data.api.FakeApiService
+import org.mbds.unice.github.data.api.FakeApiServiceGenerator
 import org.mbds.unice.github.data.model.User
 import org.mbds.unice.github.data.repository.UserRepository
 import org.mbds.unice.github.di.Injection
