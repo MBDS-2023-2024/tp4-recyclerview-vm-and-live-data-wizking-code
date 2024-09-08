@@ -31,8 +31,32 @@ class FakeApiService : ApiService {
         _users.remove(username)
     }
 
+    override fun sortByNameASC(yes: Boolean) {
+        if (yes){
+            _users.sortBy { it.login  }
+        }else{
+            _users.sortByDescending { it.login  }
+        }
+    }
+
+    override fun sortByDateASC(yes: Boolean) {
+        if (yes){
+            _users.sortBy { it.createdDate  }
+        }else{
+            _users.sortByDescending { it.createdDate  }
+        }
+    }
+
+    override fun sortByStatusACTIVE(yes: Boolean) {
+        if (yes){
+            _users.sortBy { it.isactif  }
+        }else{
+            _users.sortByDescending { it.isactif}
+        }
+    }
+
     override fun activer(user: User, yes: Boolean){
         _users.remove(user)
-        _users.add( User(user.id, user.login, user.avatarUrl,yes))
+        _users.add( User(user.id, user.login, user.avatarUrl,yes, user.createdDate))
     }
 }

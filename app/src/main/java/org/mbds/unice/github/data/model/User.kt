@@ -4,5 +4,6 @@ data class User(
     val id: String,
     val login: String,
     val avatarUrl: String,
-    var isactif : Boolean
+    var isactif: Boolean,
+    val createdDate: java.util.Date
 )

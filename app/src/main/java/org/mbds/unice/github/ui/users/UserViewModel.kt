@@ -43,4 +43,16 @@ class UserViewModel : ViewModel() {
         userRepository.actifUser(user, actif)
         refresh()
     }
+    fun sortByNameASC( yes : Boolean) {
+        userRepository.sortByNameASC(yes)
+        refresh()
+    }
+    fun sortByDateASC( yes : Boolean) {
+        userRepository.sortByDateASC(yes)
+        refresh()
+    }
+    fun sortByStatusACTIVE( yes : Boolean) {
+        userRepository.sortByStatusACTIVE(yes)
+        refresh()
+    }
 }

@@ -3,6 +3,12 @@ package org.mbds.unice.github.ui.users
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextMenu
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -28,10 +34,34 @@ class ListUserActivity : AppCompatActivity(), UserListAdapter.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var enu : MenuInflater
         binding = ActivityListUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+       // val inflater: MenuInflater = menuInflater
+      //  inflater.inflate(R.menu.first_menu,menuActivity)
         configureFab()
         configureRecyclerView()
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.sort_alpha_desc -> viewModel.sortByNameASC(false)
+            R.id.sort_alpha_asc -> viewModel.sortByNameASC(true)
+            R.id.sort_date_asc -> viewModel.sortByDateASC(true)
+            R.id.sort_date_desc -> viewModel.sortByDateASC(false)
+            R.id.sort_status -> viewModel.sortByStatusACTIVE(false)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.first_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onCreateContextMenu(menu: ContextMenu, v: View,
+                                     menuInfo: ContextMenu.ContextMenuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.first_menu, menu)
     }
 
     override fun onResume() {

@@ -21,4 +21,13 @@ class UserRepository(
     fun actifUser(user: User, actif : Boolean) {
         apiService.activer(user,actif)
     }
+    fun sortByNameASC(yes : Boolean) {
+        apiService.sortByNameASC(yes)
+    }
+    fun sortByDateASC(yes : Boolean) {
+        apiService.sortByDateASC(yes)
+    }
+    fun sortByStatusACTIVE(yes : Boolean) {
+        apiService.sortByStatusACTIVE(yes)
+    }
 }
