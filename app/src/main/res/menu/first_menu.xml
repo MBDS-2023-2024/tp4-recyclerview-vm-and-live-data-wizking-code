@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/group_sort"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/group_sort"
         android:checkableBehavior="single">
 
         <item
             android:id="@+id/sort_alpha_asc"
             android:title="Sort Alphabetically (Asc)"
-            android:orderInCategory="1"/>
+            android:orderInCategory="1" />
 
         <item
             android:id="@+id/sort_alpha_desc"
             android:title="Sort Alphabetically (Desc)"
-            android:orderInCategory="2"/>
+            android:orderInCategory="2" />
 
         <item
             android:id="@+id/sort_date_asc"
             android:title="Sort by Date (Asc)"
-            android:orderInCategory="3"/>
+            android:orderInCategory="3" />
 
         <item
             android:id="@+id/sort_date_desc"
             android:title="Sort by Date (Desc)"
-            android:orderInCategory="4"/>
+            android:orderInCategory="4" />
 
         <item
             android:id="@+id/sort_status"
             android:title="Sort by Status"
-            android:orderInCategory="5"/>
+            android:orderInCategory="5" />
+        <item
+            android:id="@+id/action_search"
+            android:title="Search"
+            android:icon="@android:drawable/ic_menu_search"
+            app:actionViewClass="androidx.appcompat.widget.SearchView"
+            app:showAsAction="always|collapseActionView" />
+
     </group>
 </menu>

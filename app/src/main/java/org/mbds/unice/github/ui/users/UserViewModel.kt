@@ -39,20 +39,28 @@ class UserViewModel : ViewModel() {
         refresh()
     }
 
-    fun activeUser(user: User, actif : Boolean) {
+    fun activeUser(user: User, actif: Boolean) {
         userRepository.actifUser(user, actif)
         refresh()
     }
-    fun sortByNameASC( yes : Boolean) {
+
+    fun sortByNameASC(yes: Boolean) {
         userRepository.sortByNameASC(yes)
         refresh()
     }
-    fun sortByDateASC( yes : Boolean) {
+
+    fun sortByDateASC(yes: Boolean) {
         userRepository.sortByDateASC(yes)
         refresh()
     }
-    fun sortByStatusACTIVE( yes : Boolean) {
+
+    fun sortByStatusACTIVE(yes: Boolean) {
         userRepository.sortByStatusACTIVE(yes)
         refresh()
+    }
+
+    fun filterNameUser(name: String) {
+        _users.value = userRepository.searchByName(name)
+
     }
 }

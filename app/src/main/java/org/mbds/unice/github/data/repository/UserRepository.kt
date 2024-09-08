@@ -18,16 +18,23 @@ class UserRepository(
         apiService.deleteUser(user)
     }
 
-    fun actifUser(user: User, actif : Boolean) {
-        apiService.activer(user,actif)
+    fun actifUser(user: User, actif: Boolean) {
+        apiService.activer(user, actif)
     }
-    fun sortByNameASC(yes : Boolean) {
+
+    fun sortByNameASC(yes: Boolean) {
         apiService.sortByNameASC(yes)
     }
-    fun sortByDateASC(yes : Boolean) {
+
+    fun sortByDateASC(yes: Boolean) {
         apiService.sortByDateASC(yes)
     }
-    fun sortByStatusACTIVE(yes : Boolean) {
+
+    fun sortByStatusACTIVE(yes: Boolean) {
         apiService.sortByStatusACTIVE(yes)
+    }
+
+    fun searchByName(name: String): List<User> {
+        return apiService.searchByName(name)
     }
 }

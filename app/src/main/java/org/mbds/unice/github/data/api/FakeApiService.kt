@@ -15,13 +15,12 @@ class FakeApiService : ApiService {
     }
 
 
-
     /**
      * Generate a random [User] and add it [FakeApiService.users] list.
      * This user must be get from the [FakeApiServiceGenerator.FAKE_USERS_RANDOM] list.
      */
     override fun addRandomUser() {
-         _users.add(_usersRandom.random())
+        _users.add(_usersRandom.random())
     }
 
     /**
@@ -32,31 +31,38 @@ class FakeApiService : ApiService {
     }
 
     override fun sortByNameASC(yes: Boolean) {
-        if (yes){
-            _users.sortBy { it.login  }
-        }else{
-            _users.sortByDescending { it.login  }
+        if (yes) {
+            _users.sortBy { it.login }
+        } else {
+            _users.sortByDescending { it.login }
         }
     }
 
     override fun sortByDateASC(yes: Boolean) {
-        if (yes){
-            _users.sortBy { it.createdDate  }
-        }else{
-            _users.sortByDescending { it.createdDate  }
+        if (yes) {
+            _users.sortBy { it.createdDate }
+        } else {
+            _users.sortByDescending { it.createdDate }
         }
     }
 
     override fun sortByStatusACTIVE(yes: Boolean) {
-        if (yes){
-            _users.sortBy { it.isactif  }
-        }else{
-            _users.sortByDescending { it.isactif}
+        if (yes) {
+            _users.sortBy { it.isactif }
+        } else {
+            _users.sortByDescending { it.isactif }
         }
     }
 
-    override fun activer(user: User, yes: Boolean){
+    override fun searchByName(name: String): List<User> {
+        val user = _users.filter {
+            it.login.contains(name ?: "", ignoreCase = true)
+        }.toMutableList()
+        return user
+    }
+
+    override fun activer(user: User, yes: Boolean) {
         _users.remove(user)
-        _users.add( User(user.id, user.login, user.avatarUrl,yes, user.createdDate))
+        _users.add(User(user.id, user.login, user.avatarUrl, yes, user.createdDate))
     }
 }

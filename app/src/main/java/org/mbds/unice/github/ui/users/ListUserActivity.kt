@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,7 +21,8 @@ import org.mbds.unice.github.databinding.ActivityListUserBinding
 class ListUserActivity : AppCompatActivity(), UserListAdapter.Listener {
     lateinit var recyclerView: RecyclerView
     lateinit var fab: FloatingActionButton
-    private  lateinit var binding: ActivityListUserBinding
+    private lateinit var binding: ActivityListUserBinding
+    private lateinit var bindingMenu: ActivityListUserBinding
 
     // By lazy permet de faire du chargement parresseux,
     // L'adapteur sera crée au premier appel
@@ -34,31 +36,53 @@ class ListUserActivity : AppCompatActivity(), UserListAdapter.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var enu : MenuInflater
         binding = ActivityListUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
-       // val inflater: MenuInflater = menuInflater
-      //  inflater.inflate(R.menu.first_menu,menuActivity)
         configureFab()
         configureRecyclerView()
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             R.id.sort_alpha_desc -> viewModel.sortByNameASC(false)
             R.id.sort_alpha_asc -> viewModel.sortByNameASC(true)
             R.id.sort_date_asc -> viewModel.sortByDateASC(true)
             R.id.sort_date_desc -> viewModel.sortByDateASC(false)
             R.id.sort_status -> viewModel.sortByStatusACTIVE(false)
         }
+
+        if (item.itemId == R.id.action_search) {
+            val enter = "enter"
+        }
         return super.onOptionsItemSelected(item)
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.first_menu,menu)
+        menuInflater.inflate(R.menu.first_menu, menu)
+
+        val searchItem: MenuItem = menu!!.findItem(R.id.action_search)
+
+        val searchView: SearchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.filterNameUser(newText)
+                return true
+            }
+
+
+        })
+
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu, v: View,
-                                     menuInfo: ContextMenu.ContextMenuInfo) {
+    override fun onCreateContextMenu(
+        menu: ContextMenu, v: View,
+        menuInfo: ContextMenu.ContextMenuInfo
+    ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.first_menu, menu)
@@ -90,10 +114,10 @@ class ListUserActivity : AppCompatActivity(), UserListAdapter.Listener {
             .setMessage("Are you sure you want to delete this user?")
             .setPositiveButton("Yes") { dialog, _ ->
                 // User confirmed deletion
-                if (user.isactif){
-                    viewModel.activeUser(user,false)
-                }else{
-                    viewModel.activeUser(user,true)
+                if (user.isactif) {
+                    viewModel.activeUser(user, false)
+                } else {
+                    viewModel.activeUser(user, true)
                 }// Call method to delete the user
                 dialog.dismiss() // Dismiss the dialog
             }
